@@ -14,13 +14,13 @@
         <nav>
             <p>Travel Agency</p>
             <ul>
-                <li>Home</li>
-                <li>Pacotes</li>
-                <li>Serviços</li>
-                <li>Contato</li>
+                <li><a href="#home">Home<a></li>
+                <li><a href="#pacotes">Pacotes</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#contato">Contato</a></li>
             </ul>
         </nav>
-        <div class="header-content">
+        <div class="header-content" id="home">
             <h1>Floresta Amazônica</h1>
             <p>Conheça a Amazônia, veja as belezas desse lugar! O embarque está próximo, junte-se a nós nessa experiência
             </p>
@@ -28,7 +28,7 @@
         </div>
     </header>
 
-    <section class="pacotes">
+    <section class="pacotes" id="pacotes">
 
         <h1>Conheça nossos pacotes</h1>
         <div class="pacotes-cards">
@@ -89,7 +89,7 @@
         </div>
     </section>
 
-    <section class="services">
+    <section class="services" id="servicos">
         <h1 class="services-title">Serviços</h1>
         <div class="services-cards">
             <div class="card">
@@ -120,7 +120,7 @@
         </div>
     </section>
 
-    <section class="contato">
+    <section class="contato" id="contato">
         <div class="contato-card">
             <h1>Entre em contato</h1>
             <ul>
@@ -131,36 +131,31 @@
         </div>
         <div id="map"></div>
     </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <script>
         feather.replace()
 
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+
         function initMap() {
-            // The location of Uluru
             var uluru = {
                 lat: -25.344,
                 lng: 131.036
             };
-            // The map, centered at Uluru
             var map = new google.maps.Map(
                 document.getElementById('map'), {
                     zoom: 4,
                     center: uluru
                 });
-            // The marker, positioned at Uluru
+
             var marker = new google.maps.Marker({
                 position: uluru,
                 map: map
